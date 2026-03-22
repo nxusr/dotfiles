@@ -4,7 +4,6 @@ set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_DATA_HOME "$HOME/.local/share"
 
 set -x LESSHISTFILE '-'
-set -x TERMINFO "$XDG_DATA_HOME/terminfo"
 set -x TERMINFO_DIRS "$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
 set -x RANDFILE "$XDG_DATA_HOME/openssl/rnd"
@@ -103,8 +102,10 @@ if begin test (uname) = Linux; and set -q XDG_SESSION_TYPE; and test $XDG_SESSIO
 end
 
 # colour scheme
-if begin status is-login; and set -q ITERM_SESSION_ID; end
-	ccc-base16.py
+if status is-login
+	if begin test $TERM_PROGRAM = "iTerm.app"; or test $TERM_PROGRAM = "ghostty"; end
+		ccc-base16.py
+	end
 end
 
 if test -f "$HOME/.config/fish/local.fish"
