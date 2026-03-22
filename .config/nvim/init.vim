@@ -137,30 +137,23 @@ Plug 'Peaches491/vim-glog-syntax'
 Plug 'solarnz/thrift.vim'
 Plug 'inkarkat/diff-fold.vim'
 Plug 'vim-python/python-syntax'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-function! ConfigureSemshiHighlights()
-	hi semshiLocal           ctermfg=209 guifg=#ff875f
-	hi semshiGlobal          ctermfg=215 guifg=#ffaf5f
-	hi semshiImported        ctermfg=222 guifg=#ffd787 cterm=bold gui=bold
-	hi semshiParameter       ctermfg=74  guifg=#5fafd7
-	hi semshiParameterUnused ctermfg=117 guifg=#87d7ff cterm=underline gui=underline
-	hi semshiFree            ctermfg=218 guifg=#ffafd7
-	hi semshiBuiltin         ctermfg=210 guifg=#ff8787
-	hi semshiAttribute       ctermfg=79  guifg=#5fd7af
-	hi semshiSelf            ctermfg=249 guifg=#b2b2b2
-	hi semshiUnresolved      ctermfg=228 guifg=#fffc87 cterm=underline gui=underline
-	hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=241 guibg=#626262
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+lua <<EOF
+	vim.api.nvim_create_autocmd('FileType', {
+	  pattern = { '<filetype>' },
+	  callback = function() vim.treesitter.start() end,
+	})
+EOF
 
-	hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d71e00
-	hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d71e00
-	sign define semshiError text=E> texthl=semshiErrorSign
-endfunction
+" flutter
+Plug 'nvim-lua/plenary.nvim'
+Plug 'stevearc/dressing.nvim' " optional for vim.ui.select
+Plug 'nvim-flutter/flutter-tools.nvim'
 
 call utils#SourceIfExists('local/plug.vim')
 
 call plug#end()
 
-call ConfigureSemshiHighlights()
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 call deoplete#custom#option('sources', {'_': ['ale'] })
 
