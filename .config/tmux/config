@@ -37,10 +37,13 @@ set-option -sg escape-time 0
 set-option -wg aggressive-resize on
 set-option -wg pane-base-index 1
 set-option -wg monitor-activity on
+set-option -wg monitor-bell on
 
 set-option -g base-index 1
 set-option -g renumber-windows on
 set-option -g mouse on
+
+set-option -g focus-events on
 
 # Styling
 set-option -g default-terminal "tmux-256color"
