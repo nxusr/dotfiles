@@ -103,7 +103,7 @@ end
 
 # colour scheme
 if status is-login
-	if begin test $TERM_PROGRAM = "iTerm.app"; or test $TERM_PROGRAM = "ghostty"; end
+	if begin test "$TERM_PROGRAM" = "iTerm.app"; or test "$TERM_PROGRAM" = "ghostty"; end
 		ccc-base16.py
 	end
 end
