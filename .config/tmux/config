@@ -1,5 +1,4 @@
 # Key bindings
-set-option -wg xterm-keys on
 set-option -wg mode-keys vi
 
 unbind-key C-o
@@ -29,7 +28,15 @@ bind-key E set-option -w synchronize-panes off
 unbind-key [
 bind-key escape copy-mode
 unbind-key p
-bind-key p paste-buffer
+bind-key p paste-buffer -p
+unbind-key -T copy-mode-vi v
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle
+unbind-key -T copy-mode-vi y
+bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+
+set-option -s set-clipboard on
+set-option -g allow-passthrough on
 
 # Config
 set-option -sg escape-time 0
@@ -43,14 +50,11 @@ set-option -g base-index 1
 set-option -g renumber-windows on
 set-option -g mouse on
 
-set-option -g focus-events on
-
-# Styling
-set-option -g default-terminal "tmux-256color"
 set-option -g set-titles on
-
+set-option -g default-terminal "tmux-256color"
 set-option -ga terminal-overrides ',xterm-256color:Tc'
 
+# Styling
 set-option -wg automatic-rename on
 set-option -wg message-style "bg=colour3 fg=colour0"
 set-option -wg message-command-style "bg=colour4 fg=colour0"
@@ -72,6 +76,6 @@ set-option -wg status-right-length 120
 set-option -wg status-right "#(tmux-utils status_right)"
 set-option -wg status-interval 2
 
-if-shell "test (uname) = Darwin" "set-option -ga terminal-overrides ',xterm*:sitm=\E[3m,ritm=\E[23m'"
+if-shell "test $(uname) = Darwin" "set-option -ga terminal-overrides ',xterm*:sitm=\E[3m,ritm=\E[23m'"
 
 source-file "$HOME/.config/tmux/config.local"
