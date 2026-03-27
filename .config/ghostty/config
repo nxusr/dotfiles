@@ -3,7 +3,7 @@ font-size = 12
 font-thicken = true
 
 theme = dark:base16-dark,light:base16-light
-background-opacity = 0.85
+background-opacity = 1
 background-blur = macos-glass-regular
 window-colorspace = display-p3
 
