@@ -83,6 +83,7 @@ set -g fish_pager_color_completion "normal"
 set -g fish_pager_color_description "b8b8b8"
 set -g fish_pager_color_progress "86c1b9"
 
+set fish_prompt_sl_show_informative_status "yes"
 set fish_prompt_hg_show_informative_status "yes"
 
 set __fish_git_prompt_showdirtystate "yes"
