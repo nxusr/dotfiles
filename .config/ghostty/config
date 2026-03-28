@@ -17,4 +17,4 @@ command = /opt/homebrew/bin/fish -l
 clipboard-read = allow
 clipboard-write = allow
 
-shell-integration-features = sudo, title, ssh-env, ssh-terminfo, path
+shell-integration-features = sudo, title, no-ssh-env, no-ssh-terminfo, path
