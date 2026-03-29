@@ -14,6 +14,10 @@ macos-secure-input-indication = true
 
 command = /opt/homebrew/bin/fish -l
 
+window-inherit-working-directory = false
+tab-inherit-working-directory = false
+working-directory = home
+
 clipboard-read = allow
 clipboard-write = allow
 
