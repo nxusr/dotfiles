@@ -8,12 +8,9 @@
 
 ### How to Inspect
 
-Use [Compiler Explorer](https://godbolt.org/) for small snippets. For full projects at Meta, use `buck build` to produce the binary and then `objdump -d` to inspect specific functions.
+Use [Compiler Explorer](https://godbolt.org/) for small snippets. For full projects, build in release mode and use `objdump -d` to inspect specific functions.
 
 ```bash
-# Build in release mode
-buck build //path/to:target -c rust.force_rlib=true
-
 # Disassemble a specific function (after finding the symbol name)
 objdump -d path/to/binary | grep -A 50 'function_name'
 ```

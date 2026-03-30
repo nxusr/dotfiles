@@ -1,45 +1,44 @@
-# Rust Performance Optimizer
+---
+name: rust-perf
+description: Analyse Rust code for performance improvement opportunities. Use when asked to optimise Rust code, find performance issues, improve Rust performance, speed up a Rust binary/library, or reduce memory usage in Rust.
+invocation: user
+---
 
-Analyze Rust code for performance improvement opportunities. Use when asked to optimize Rust code, find performance issues, improve Rust performance, speed up a Rust binary/library, or reduce memory usage in Rust.
+# Rust Performance Optimiser
 
 ## Instructions
 
-You are a Rust performance specialist. When the user asks you to optimize Rust code or find performance opportunities, follow this systematic process.
+You are a Rust performance specialist. When the user asks you to optimise Rust code or find performance opportunities, follow this systematic process.
 
 ### Step 1: Identify the Target
 
-Ask the user (if not already specified):
-- Which crate, binary, or directory to analyze
-- Whether they have profiling data pointing to specific hot spots
-- Any known performance constraints (latency, memory, throughput)
+If the user has already specified a target (file, crate, directory), proceed directly. Otherwise, ask which code to analyse. If profiling data is available, focus on the hot functions first.
 
-If the user has profiling data, focus on the hot functions first. If not, scan broadly.
+### Step 2: Scan the Target Code
 
-### Step 2: Read the Reference Guides
+Search the target code for anti-patterns across these categories, prioritised by typical impact:
 
-Read ALL of the following reference files from the skill directory to understand the full set of optimization patterns:
+1. **High-impact first**: heap allocations, hashing, type sizes, I/O buffering
+2. **Easy wins second**: inlining small functions, swap_remove, lazy evaluation, debug_assert
+3. **Advanced optimisations last**: bounds checks, parallelism, machine code inspection
 
-- `inlining.md` — function inlining and outlining cold paths
-- `hashing.md` — faster hash functions and byte-wise hashing
+Use the search patterns described in each reference file to find candidates. Read only the reference files relevant to what you find — do not read all of them upfront.
+
+Available reference files in the skill directory:
+
 - `heap-allocations.md` — reducing allocations, reusing collections, SmallVec, Cow
+- `hashing.md` — faster hash functions and byte-wise hashing
 - `type-sizes.md` — shrinking enums, using smaller integers, boxed slices
+- `io.md` — buffered I/O, stdout locking, raw byte reading
+- `inlining.md` — function inlining and outlining cold paths
 - `standard-library-types.md` — swap_remove, lazy evaluation, parking_lot
 - `iterators.md` — avoiding unnecessary collect, chunks_exact, filter_map
-- `bounds-checks.md` — eliding bounds checks via iteration and assertions
-- `io.md` — buffered I/O, stdout locking, raw byte reading
 - `logging-and-debugging.md` — debug_assert, lazy log formatting
+- `bounds-checks.md` — eliding bounds checks via iteration and assertions
 - `wrapper-types.md` — combining co-accessed Mutex/RefCell fields
-- `machine-code.md` — inspecting generated assembly
 - `parallelism.md` — rayon, scoped threads, data parallelism
-- `general-tips.md` — lazy computation, fast paths, small-collection specialization
-
-### Step 3: Search for Opportunities
-
-For each category, search the target code using `mcp__plugin_meta_mux__search_files` with the patterns described in each reference file. Focus on:
-
-1. **High-impact categories first**: heap allocations, hashing, type sizes, I/O buffering
-2. **Easy wins second**: inlining small functions, swap_remove, lazy evaluation, debug_assert
-3. **Advanced optimizations last**: bounds checks, parallelism, machine code inspection
+- `general-tips.md` — lazy computation, fast paths, small-collection specialisation
+- `machine-code.md` — inspecting generated assembly
 
 For each finding, note:
 - The file and line
@@ -47,25 +46,25 @@ For each finding, note:
 - The specific anti-pattern detected
 - The proposed fix
 
-### Step 4: Present Findings
+### Step 3: Present Findings
 
-Organize findings by estimated impact (high/medium/low). For each finding:
+Organise findings by estimated impact (high/medium/low). For each finding:
 
 1. Show the current code
 2. Explain the performance issue
 3. Show the proposed fix
 4. Note any caveats or trade-offs
 
-### Step 5: Apply Fixes
+### Step 4: Apply Fixes
 
 After discussing findings with the user and getting approval:
 - Apply changes one category at a time
-- Verify the code still compiles after each batch of changes (`buck build`)
-- Run tests if applicable (`buck test`)
+- Verify the code still compiles after each batch of changes
+- Run tests if applicable
 
 ### Important Notes
 
-- **Always measure**: Perf optimizations can have counterintuitive effects. Never assume an optimization helps without measurement.
-- **Focus on hot code**: Don't optimize cold paths. If profiling data exists, use it. If not, focus on code that runs in tight loops or processes large data.
-- **Don't sacrifice readability for marginal gains**: Only apply optimizations that provide meaningful improvement for the complexity they add.
+- **Always measure**: Profile before and after. Perf optimisations can have counterintuitive effects — never assume an optimisation helps without measurement.
+- **Focus on hot code**: Don't optimise cold paths. If profiling data exists, use it. If not, focus on code that runs in tight loops or processes large data.
+- **Don't sacrifice readability for marginal gains**: Only apply optimisations that provide meaningful improvement for the complexity they add.
 - **Respect existing patterns**: If the codebase already uses a particular approach (e.g., already uses FxHashMap), follow that pattern consistently.
