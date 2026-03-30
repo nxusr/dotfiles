@@ -30,6 +30,9 @@ set writebackup
 set shortmess+=I
 
 set clipboard+=unnamedplus
+lua <<EOF
+vim.g.clipboard = 'osc52'
+EOF
 
 set lazyredraw
 set cursorline

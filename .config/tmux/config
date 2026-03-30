@@ -36,6 +36,8 @@ unbind-key -T copy-mode-vi y
 bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
 
 set-option -s set-clipboard on
+# awaiting release with https://github.com/tmux/tmux/commit/322adfbdde11c51af29def9ae85870c46bed1fd1
+# set-option -s get-clipboard both
 set-option -g allow-passthrough on
 
 # Config
@@ -52,7 +54,8 @@ set-option -g mouse on
 
 set-option -g set-titles on
 set-option -g default-terminal "tmux-256color"
-set-option -ga terminal-overrides ',xterm-256color:Tc'
+set-option -ga terminal-overrides ",xterm-256color:Tc"
+set-option -as termina-features "tmux-256color:clipboard"
 
 # Styling
 set-option -wg automatic-rename on
