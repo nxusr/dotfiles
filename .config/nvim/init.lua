@@ -96,6 +96,35 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 --------------------------------------------------------------------------------
 
+local symbol_icons = {
+  Class         = '◆',
+  Color         = '●',
+  Constant      = 'π',
+  Constructor   = '⬡',
+  Enum          = '❖',
+  EnumMember    = '▪',
+  Event         = '↯',
+  Field         = '◇',
+  File          = '□',
+  Folder        = '▤',
+  Function      = 'λ',
+  Interface     = '◎',
+  Keyword       = '⊞',
+  Method        = '→',
+  Module        = '◫',
+  Namespace     = '▣',
+  Operator      = '±',
+  Property      = '◇',
+  Reference     = '⊕',
+  Snippet       = '✂',
+  Struct        = '◈',
+  Text          = '¶',
+  TypeParameter = '⊟',
+  Unit          = '↕',
+  Value         = '∎',
+  Variable      = 'α',
+}
+
 local plugins = {
   -- navigation
   'tpope/vim-rsi',
@@ -118,6 +147,7 @@ local plugins = {
         'Class', 'Constructor', 'Enum', 'Function', 'Interface',
         'Module', 'Method', 'Namespace', 'Struct',
       },
+      icons = symbol_icons,
     },
   },
 
@@ -178,6 +208,12 @@ local plugins = {
       cmp.setup({
         snippet = {
           expand = function(args) vim.snippet.expand(args.body) end,
+        },
+        formatting = {
+          format = function(_, vim_item)
+            vim_item.kind = (symbol_icons[vim_item.kind] or '?') .. ' ' .. vim_item.kind
+            return vim_item
+          end,
         },
         mapping = cmp.mapping.preset.insert({
           ['<Tab>'] = cmp.mapping.select_next_item(),
