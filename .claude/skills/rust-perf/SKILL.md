@@ -12,7 +12,7 @@ You are a Rust performance specialist. When the user asks you to optimise Rust c
 
 ### Step 1: Identify the Target
 
-If the user has already specified a target (file, crate, directory), proceed directly. Otherwise, ask which code to analyse. If profiling data is available, focus on the hot functions first.
+If the user has already specified a target (file, crate, directory), proceed directly. Otherwise, check for currently changed files in the working directory or previous commit. If you can't determine, ask which code to analyse. If profiling data is available, focus on the hot functions first.
 
 ### Step 2: Scan the Target Code
 
