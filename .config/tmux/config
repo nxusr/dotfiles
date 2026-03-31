@@ -36,8 +36,8 @@ unbind-key -T copy-mode-vi y
 bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
 
 set-option -s set-clipboard on
-# awaiting release with https://github.com/tmux/tmux/commit/322adfbdde11c51af29def9ae85870c46bed1fd1
-# set-option -s get-clipboard both
+# -q: get-clipboard was added in 3.6, silence the error on older versions
+set-option -sq get-clipboard both
 set-option -g allow-passthrough on
 
 # Config
@@ -54,8 +54,7 @@ set-option -g mouse on
 
 set-option -g set-titles on
 set-option -g default-terminal "tmux-256color"
-set-option -ga terminal-overrides ",xterm-256color:Tc"
-set-option -as termina-features "tmux-256color:clipboard"
+set-option -as terminal-features "xterm-256color:RGB:clipboard"
 
 # Styling
 set-option -wg automatic-rename on
@@ -79,6 +78,4 @@ set-option -wg status-right-length 120
 set-option -wg status-right "#(tmux-utils status_right)"
 set-option -wg status-interval 2
 
-if-shell "test $(uname) = Darwin" "set-option -ga terminal-overrides ',xterm*:sitm=\E[3m,ritm=\E[23m'"
-
-source-file "$HOME/.config/tmux/config.local"
+source-file -q "$HOME/.config/tmux/config.local"
