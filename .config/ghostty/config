@@ -21,4 +21,6 @@ working-directory = home
 clipboard-read = allow
 clipboard-write = allow
 
+link-previews = osc8
+
 shell-integration-features = sudo, title, no-ssh-env, no-ssh-terminfo, path
