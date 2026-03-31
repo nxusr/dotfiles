@@ -138,9 +138,12 @@ local plugins = {
   { 'nvim-lualine/lualine.nvim', opts = {} },
   {
     'stevearc/aerial.nvim',
+    lazy = false,
     keys = { { '<F6>', '<cmd>AerialToggle<CR>' } },
     opts = {
       backends = { 'lsp', 'treesitter', 'markdown', 'asciidoc', 'man' },
+      attach_mode = 'global',
+      open_automatic = true,
       layout = { min_width = 40 },
       show_guides = true,
       filter_kind = {
