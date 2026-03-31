@@ -54,7 +54,8 @@ set-option -g mouse on
 
 set-option -g set-titles on
 set-option -g default-terminal "tmux-256color"
-set-option -as terminal-features "xterm-256color:RGB:clipboard"
+set-option -as terminal-features "xterm-256color:RGB:clipboard:hyperlinks"
+set-option -as terminal-features "xterm-ghostty:RGB:clipboard:hyperlinks"
 
 # Styling
 set-option -wg automatic-rename on
