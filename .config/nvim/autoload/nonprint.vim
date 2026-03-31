@@ -9,11 +9,11 @@ if !exists('g:nonprint#has_setup')
 	endif
 	let &listchars=g:nonprint#listchars
 
-	highlight SpecialKey ctermfg=12
+	highlight SpecialKey ctermfg=12 guifg=#7cafc2
 
 	if has('conceal')
 		setlocal conceallevel=2 concealcursor=inv
-		highlight Conceal ctermbg=none ctermfg=12
+		highlight Conceal ctermbg=none ctermfg=12 guibg=none guifg=#7cafc2
 	endif
 
 	let g:nonprint#has_setup = 1

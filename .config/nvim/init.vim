@@ -2,10 +2,7 @@ call utils#SourceIfExists('local/pre.vim')
 
 " options {
 
-syntax enable
-
 set noshowmode
-set modeline
 
 set number
 set nowrap
@@ -34,19 +31,16 @@ lua <<EOF
 vim.g.clipboard = 'osc52'
 EOF
 
-set lazyredraw
 set cursorline
 
 set mouse=a
 
 set termguicolors
 set background=dark
-let base16colorspace=256
 colorscheme base16-default-dark
 lua <<EOF
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
--- Optional: Apply to other highlights
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 EOF
@@ -95,7 +89,6 @@ let g:lightline = {
 	\ 'colorscheme': 'base16',
 	\ }
 Plug 'itchyny/lightline.vim'
-	set laststatus=2
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 	nmap <F6> :TagbarToggle<cr>
 Plug 'tpope/vim-surround'
@@ -125,40 +118,17 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " languages
-Plug 'kballard/vim-fish'
-	autocmd FileType fish compiler fish
-	autocmd FileType fish setlocal textwidth=79
-	autocmd FileType fish setlocal foldmethod=expr
-Plug 'chase/vim-ansible-yaml'
-Plug 'pangloss/vim-javascript'
-Plug 'kchmck/vim-coffee-script'
-Plug 'leshill/vim-json'
-Plug 'othree/html5.vim'
-Plug 'mutewinter/nginx.vim'
-Plug 'Chiel92/vim-autoformat'
-Plug 'rust-lang/rust.vim'
-	let g:rustfmt_autosave = 1
-Plug 'cespare/vim-toml'
 Plug 'ledger/vim-ledger'
-Plug 'plasticboy/vim-markdown'
 Plug 'darfink/vim-plist'
 	let g:plist_json_filetype = 'json'
 Plug 'Peaches491/vim-glog-syntax'
-Plug 'solarnz/thrift.vim'
 Plug 'inkarkat/diff-fold.vim'
-Plug 'vim-python/python-syntax'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 lua <<EOF
 	vim.api.nvim_create_autocmd('FileType', {
-	  pattern = { '<filetype>' },
-	  callback = function() vim.treesitter.start() end,
+	  callback = function() pcall(vim.treesitter.start) end,
 	})
 EOF
-
-" flutter
-Plug 'nvim-lua/plenary.nvim'
-Plug 'stevearc/dressing.nvim' " optional for vim.ui.select
-Plug 'nvim-flutter/flutter-tools.nvim'
 
 call utils#SourceIfExists('local/plug.vim')
 
