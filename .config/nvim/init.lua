@@ -263,6 +263,14 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
+      require('nvim-treesitter').install({
+        'bash', 'c', 'cpp', 'css',
+        'go', 'hack', 'html',
+        'javascript', 'json', 'lua',
+        'markdown', 'markdown_inline',
+        'python', 'rust', 'starlark',
+        'thrift', 'toml', 'yaml',
+      })
       vim.api.nvim_create_autocmd('FileType', {
         callback = function() pcall(vim.treesitter.start) end,
       })
