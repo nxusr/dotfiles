@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.filetype.add({
-  filename = { TARGETS = 'python', BUCK = 'python' },
+  filename = { TARGETS = 'starlark', BUCK = 'starlark' },
   extension = { cconf = 'python', mcconf = 'python', cinc = 'python', pyx = 'python', pxd = 'python', tw = 'python' },
 })
 
