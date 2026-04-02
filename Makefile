@@ -4,6 +4,7 @@
 
 EXCLUDES = \
 	.git \
+	.sl \
 	Makefile \
 	LICENSE
 
