@@ -71,7 +71,7 @@ vim.g.netrw_winsize = 25
 -- Autocmds
 --------------------------------------------------------------------------------
 
-vim.api.nvim_create_autocmd('FocusGained', {
+vim.api.nvim_create_autocmd({'FocusGained', 'BufEnter', 'CursorHold'}, {
 	command = 'checktime',
 })
 
