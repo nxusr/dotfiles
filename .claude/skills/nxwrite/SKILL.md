@@ -271,13 +271,13 @@ Rahul identifies with the Fixer archetype — someone who jumps into fires, fixe
 - **British English spelling and punctuation**: optimise, serialise, behaviour, utilisation, minimise, defence, colour. Place commas and full stops **outside** closing quotation marks — never inside (e.g. `"hello",` not `"hello,"`; `"hello".` not `"hello."`). This applies to **all registers including fiction dialogue** — do not fall back to American conventions. When a quoted passage ends with `?` or `!`, the enclosing sentence still needs its own terminal punctuation after the closing quote (e.g. `"how much CPU does this take?".` not `"how much CPU does this take?"`).
 - **Backticks** for all technical identifiers: config names, binary names, function names, file paths, struct names, `O(n)` notation.
 - **Bold** for key metrics and takeaways: **~0.28%**, **50%**, **~0.014%**. Don't bold dollar amounts — state them plainly.
-- **Markdown headers** (`##`) with sparse emoji as section markers (one per header, zero in body text). Use emoji as categorical bullets when listing items across domains (☁️ for Cloud, 🛠️ for Operations, 📈 for Metrics).
+- **Markdown headers** (`##`) with sparse emoji as section markers (one per header, zero in body text) — **Workplace posts only**. Wikis and formal docs use plain headers, no emoji. Use emoji as categorical bullets when listing items across domains (☁️ for Cloud, 🛠️ for Operations, 📈 for Metrics) in Workplace posts.
 - **Tables** for structured data comparisons (fleet-wide vs. specific, per-config costs). Don't use tables for simple before/after comparisons — just write a sentence.
 - **Code blocks** for CLI commands, chat transcripts, and incantations.
 - **Diff references**: bare D-numbers (D94217112) — Workplace auto-links them. Don't wrap in full markdown links.
 - **Inline links** with descriptive text for non-diff URLs, never bare URLs.
 - **People**: Workplace `@[id:Name]` mentions. Ask the user for Workplace IDs if not provided.
-- **Em-dashes** (`--`) sparingly; prefer parentheses for asides.
+- **Em-dashes** (`--`) sparingly — max 1-2 per section. Overuse is a strong AI-generated signal. Prefer periods, colons, commas, semicolons, or parentheses instead. An em-dash earns its place when there's a genuine pivot or interruption; don't use it as a default sentence joiner.
 - **Short paragraphs.** Punchy sentences. One change per paragraph in technical sections.
 - **Benchmarks**: lead with the headline multiplier ("~9x throughput improvement") over raw numbers.
 - **Capitalise "Bold Statements"** for emphasis when preceding a controversial opinion.
