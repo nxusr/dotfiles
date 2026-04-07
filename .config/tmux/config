@@ -42,6 +42,7 @@ set-option -g allow-passthrough on
 
 # Config
 set-option -sg escape-time 0
+set-option -g focus-events on
 
 set-option -wg aggressive-resize on
 set-option -wg pane-base-index 1

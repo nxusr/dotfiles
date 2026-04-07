@@ -31,6 +31,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 
 -- files
+vim.opt.autoread = true
 vim.opt.autowrite = true
 vim.opt.autochdir = true
 vim.opt.backup = false
@@ -69,6 +70,10 @@ vim.g.netrw_winsize = 25
 --------------------------------------------------------------------------------
 -- Autocmds
 --------------------------------------------------------------------------------
+
+vim.api.nvim_create_autocmd('FocusGained', {
+	command = 'checktime',
+})
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'spec',
