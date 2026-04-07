@@ -287,6 +287,12 @@ local plugins = {
   -- languages
   'ledger/vim-ledger',
   { 'darfink/vim-plist', init = function() vim.g.plist_json_filetype = 'json' end },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    ft = 'markdown',
+    opts = {},
+  },
   'Peaches491/vim-glog-syntax',
   'inkarkat/diff-fold.vim',
 }
