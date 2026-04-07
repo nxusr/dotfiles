@@ -103,7 +103,36 @@ vim.opt.rtp:prepend(lazypath)
 -- Plugins
 --------------------------------------------------------------------------------
 
-local symbol_icons = {
+local nerd_symbol_icons = {
+  Class         = '󰠱',
+  Color         = '󰏘',
+  Constant      = '󰏿',
+  Constructor   = '󰒓',
+  Enum          = '󰕘',
+  EnumMember    = '󰕘',
+  Event         = '󰉁',
+  Field         = '󰜢',
+  File          = '󰈙',
+  Folder        = '󰉋',
+  Function      = '󰊕',
+  Interface     = '󰜰',
+  Keyword       = '󰌋',
+  Method        = '󰆧',
+  Module        = '󰆧',
+  Namespace     = '󰌗',
+  Operator      = '󰆕',
+  Property      = '󰖷',
+  Reference     = '󰈇',
+  Snippet       = '󰩫',
+  Struct        = '󰙅',
+  Text          = '󰉿',
+  TypeParameter = '󰊄',
+  Unit          = '󰑭',
+  Value         = '󰎠',
+  Variable      = '󰀫',
+}
+
+local unicode_symbol_icons = {
   Class         = '◆',
   Color         = '●',
   Constant      = 'π',
@@ -131,6 +160,9 @@ local symbol_icons = {
   Value         = '∎',
   Variable      = 'α',
 }
+
+local use_nerd_font = vim.g.use_nerd_font or false
+local symbol_icons = use_nerd_font and nerd_symbol_icons or unicode_symbol_icons
 
 local plugins = {
   -- navigation
