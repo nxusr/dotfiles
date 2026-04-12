@@ -295,6 +295,7 @@ local plugins = {
       formatters_by_ft = {
         rust = { 'rustfmt' },
         javascript = { 'prettier' },
+        python = { 'black' },
       },
     },
   },
