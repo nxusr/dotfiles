@@ -1,0 +1,9 @@
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "theme": "system",  // inherit from the terminal
+  "scroll_acceleration": {
+    "enabled": true
+  },
+  "diff_style": "auto",
+  "mouse": true
+}
