@@ -218,11 +218,11 @@ local plugins = {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'hrsh7th/cmp-nvim-lsp',
+      'saghen/blink.cmp',
     },
     config = function()
       vim.lsp.config('*', {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        capabilities = require('blink.cmp').get_lsp_capabilities(),
       })
 
       require('mason').setup()
@@ -241,38 +241,28 @@ local plugins = {
 
   -- completion
   {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
+    'saghen/blink.cmp',
+    version = '*',
+    opts = {
+      keymap = { preset = 'super-tab' },
+      appearance = { kind_icons = symbol_icons },
+	  completion = {
+		  documentation = { auto_show = true },
+		  ghost_text = { enabled = true },
+		  list = { selection = { preselect = true, auto_insert = false } },
+		  menu = { draw = { treesitter = { 'lsp' } } },
+		  trigger = { show_in_snippet = false },
+	  },
+	  cmdline = {
+		  keymap = { preset = 'inherit' },
+		  completion = { menu = { auto_show = true } },
+	  },
+	  signature = { enabled = true },
+      sources = { default = { 'lsp', 'path', 'buffer' } },
+      enabled = function()
+        return not vim.tbl_contains({ 'text', 'markdown' }, vim.bo.filetype)
+      end,
     },
-    config = function()
-      local cmp = require('cmp')
-      cmp.setup({
-        snippet = {
-          expand = function(args) vim.snippet.expand(args.body) end,
-        },
-        formatting = {
-          format = function(_, vim_item)
-            vim_item.kind = (symbol_icons[vim_item.kind] or '?') .. ' ' .. vim_item.kind
-            return vim_item
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<Tab>'] = cmp.mapping.select_next_item(),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        }),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'buffer' },
-          { name = 'path' },
-        }),
-      })
-
-      cmp.setup.filetype({ 'text', 'markdown' }, { enabled = false })
-    end,
   },
 
   -- linting (non-LSP sources)
