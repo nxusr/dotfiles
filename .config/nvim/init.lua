@@ -201,9 +201,11 @@ local plugins = {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     keys = {
-      { '<leader>ff', '<cmd>Telescope find_files<CR>' },
-      { '<leader>fg', '<cmd>Telescope live_grep<CR>' },
-      { '<leader>fb', '<cmd>Telescope buffers<CR>' },
+      { '<leader>tf', '<cmd>Telescope find_files<CR>' },
+      { '<leader>tg', '<cmd>Telescope live_grep<CR>' },
+      { '<leader>tb', '<cmd>Telescope buffers<CR>' },
+      { '<leader>td', '<cmd>Telescope diagnostics<CR>' },
+      { '<leader>tD', '<cmd>Telescope diagnostics bufnr=0<CR>' },
     },
     config = function()
       require('telescope').load_extension('fzf')
